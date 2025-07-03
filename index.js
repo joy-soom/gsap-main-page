@@ -19,7 +19,7 @@ window.onload = function () {
         start: "100% 100%",
         end: "100% 0%",
         scrub: 1, //애니메이션이 스크롤에 따라 움직이도록 하는 속성, true 이면서 속도1 / 안적으면 스크롤 없이 바로 진행 된다.
-        markers:1,
+      //  markers:1,
       },
     })
     .to(".logoWrap #j", { x: -150, y: 250, rotate: 20, ease: "none", duration: 5 }, 0)
@@ -38,7 +38,7 @@ window.onload = function () {
         start: '100% 100%',
         end: '100% 100%',
         scrub: 1,
-        markers: true,
+       // markers: true,
       },
     })
   .fromTo(selector, { overflow: 'hidden', y: 150 }, { y: 0, ease: 'none', duration: 5 }, 0);
@@ -52,7 +52,7 @@ window.onload = function () {
         start:"100% 100%",
         end: "100% 100%",
         scrub:1,
-        markers:true
+       // markers:true
       },
     })
     .fromTo(selector, { opacity:0, y: 100 }, { opacity:1, y: 0, ease: 'none', duration: 5 }, 0);
@@ -83,7 +83,7 @@ window.onload = function () {
         start:"0% 20%",
         end: "0% 0%",      
         scrub:1,
-        markers:true 
+       // markers:true 
       }             
     })
     .to(selector, {transform:'rotateX(-10deg) scale(0.9)', transformOrigin:'top', filter:'brightness(0.3)'},0)
@@ -118,23 +118,32 @@ window.onload = function () {
   let listBox = document.querySelectorAll('.con5 .listBox li');
   let imgBox = document.querySelector('.con5 .imgBox');
   let img = document.querySelector('.con5 .imgBox img');
+  let isImgBoxVisible = false;
 
-  for(let i = 0; i < listBox.length; i++) {
+  for (let i = 0; i < listBox.length; i++) {
     listBox[i].addEventListener('mouseover', () => {
-      img.src=`images/img${i}.jpg`;
-      gsap.set(imgBox, {scale:0, opacity:0, duration:.3}),
-      gsap.to(imgBox, {scale:1, opacity:1, duratioin:.3})
-    })
-    listBox[i].addEventListener('mousemove',(e) => {
+      img.src = `images/img${i}.jpg`;
+
+      // 보이지 않을 때만 애니메이션 실행
+      if (!isImgBoxVisible) {
+        gsap.set(imgBox, {scale: 0, opacity: 0});
+        gsap.to(imgBox, {scale: 1, opacity: 1, duration: 0.3,});
+      }
+    });
+
+    listBox[i].addEventListener('mousemove', (e) => {
       let imgBoxX = e.pageX + 20;
       let imgBoxY = e.pageY - 20;
       imgBox.style.left = imgBoxX + 'px';
       imgBox.style.top = imgBoxY + 'px';
-    })
+    });
+
     listBox[i].addEventListener('mouseout', () => {
-      gsap.to(imgBox, {scale:0, opacity:0, duration:.3})
-    })
+      gsap.to(imgBox, {
+        scale: 0, opacity: 0, duration: 0.3,});
+    });
   }
+
   //con5에 overflow hidden 효과 부여
 //  gsap.timeline({
 //   scrollTrigger : {
@@ -144,5 +153,16 @@ window.onload = function () {
 //     toggleClass: {targets:'.wrap', className:'on'}
 //   }
 //  }) 
-};
 
+  //footer
+  gsap.timeline({
+    scrollTrigger: {
+      trigger:'footer',
+      start:'0% 100%',
+      end:'100% 0%',
+      scrub:1,
+      //markers: true
+    }
+  })
+  .to('.logoWrap', {top:'20%', ease:'none', duration:5},0)  
+};

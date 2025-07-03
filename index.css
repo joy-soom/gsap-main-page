@@ -14,7 +14,7 @@ button {background: none; border: none;}
 img {vertical-align: middle;}
 
 body {font-family: "Raleway", sans-serif; font-size:16px; letter-spacing: -0.01em;}
-.wrap {position: relative; margin: 0 auto; background-color: #141212; color:#fff; padding-bottom:1000px;}
+.wrap {position: relative; margin: 0 auto; background-color: #141212; color:#fff; padding-bottom:100px;}
 header { position: fixed; width:100%; z-index: 9999;}
 header .inner {padding: 30px 50px 0;}
 header .inner .logo {width:150px; display: flex; justify-content: space-between;}
@@ -156,7 +156,7 @@ section {margin-bottom:150px;}
 
 /* footer */
 footer {position: relative; overflow: hidden;}
-footer .inner {z-index:2; height: 100vh; padding:75px 75px 25px; box-sizing: border-box; display: flex; flex-direction: column;}
+footer .inner {position:relative; z-index: 2; height: 100vh; padding:75px 75px 25px; box-sizing: border-box; display: flex; flex-direction: column;}
 footer .inner .box {padding: 50px 0 0; background:rgba(55,55,55,0.4); backdrop-filter: blur(100px); display: flex; flex-direction: column; flex-grow: 1;}
 footer .inner .box .mainTextBox {text-align: center; flex-grow:1;}
 footer .inner .box .mainTextBox h2 {font-size:120px; text-transform: uppercase; letter-spacing: -1px; font-weight: normal; margin-bottom: 30px;}
