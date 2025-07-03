@@ -50,6 +50,7 @@ header .gnb .menuBox.on li:nth-child(4) a {transition-delay:0.15s;}
 
 
 /* 공통 요소 css */
+body {overflow-x: hidden;}
 section {margin-bottom:150px;}
 .inner {padding: 0 50px; box-sizing: border-box;}
 .box {border-radius: 10px; overflow: hidden;}
@@ -143,7 +144,7 @@ section {margin-bottom:150px;}
 
 
 /* con5 */
-.con5 {background-color: #fff; color:#141412;}
+.con5 {background-color: #fff; color:#141412; margin-bottom:0;}
 .con5 .inner {padding:50px;}
 .con5 .mainTextBox h2 {font-size:100px; text-transform: uppercase; letter-spacing: -5px; font-weight:normal;}
 .con5 .listBox {border-top:1px solid #000; margin-top:150px;}
@@ -151,7 +152,7 @@ section {margin-bottom:150px;}
 .con5 .listBox li h3 {font-size:40px; letter-spacing: -1px; font-weight: normal;}
 .con5 .listBox li p {align-items: center; display: grid;}
 .con5 .imgBox {position: absolute; transform: scale(0); opacity: 0; z-index:99;}
-
+.wrap.on {overflow:hidden;}
 
 /* footer */
 footer {position: relative; overflow: hidden;}

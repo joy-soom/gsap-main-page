@@ -110,8 +110,39 @@ window.onload = function () {
             delay:(t % 3) * .05         
         });
       },
-      markers:true
+     // markers:true
     });
   });
+
+  // listBox li 호버시 이미지 애니
+  let listBox = document.querySelectorAll('.con5 .listBox li');
+  let imgBox = document.querySelector('.con5 .imgBox');
+  let img = document.querySelector('.con5 .imgBox img');
+
+  for(let i = 0; i < listBox.length; i++) {
+    listBox[i].addEventListener('mouseover', () => {
+      img.src=`images/img${i}.jpg`;
+      gsap.set(imgBox, {scale:0, opacity:0, duration:.3}),
+      gsap.to(imgBox, {scale:1, opacity:1, duratioin:.3})
+    })
+    listBox[i].addEventListener('mousemove',(e) => {
+      let imgBoxX = e.pageX + 20;
+      let imgBoxY = e.pageY - 20;
+      imgBox.style.left = imgBoxX + 'px';
+      imgBox.style.top = imgBoxY + 'px';
+    })
+    listBox[i].addEventListener('mouseout', () => {
+      gsap.to(imgBox, {scale:0, opacity:0, duration:.3})
+    })
+  }
+  //con5에 overflow hidden 효과 부여
+//  gsap.timeline({
+//   scrollTrigger : {
+//     trigger:'.con5',
+//     start:'0% 100%',
+//     end:'100% 0%',
+//     toggleClass: {targets:'.wrap', className:'on'}
+//   }
+//  }) 
 };
 
