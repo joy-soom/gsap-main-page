@@ -12,36 +12,82 @@ window.onload = function () {
   gsap.registerPlugin(ScrollTrigger);
 
   // visual 01
-gsap
-  .timeline({
-    scrollTrigger: {
-      trigger: ".visual",
-      start: "100% 100%",
-      end: "100% 0%",
-      scrub: 1, //애니메이션이 스크롤에 따라 움직이도록 하는 속성, true 이면서 속도1 / 안적으면 스크롤 없이 바로 진행 된다.
-      markers:1,
-    },
-  })
-  .to(".logoWrap #j", { x: -150, y: 250, rotate: 20, ease: "none", duration: 5 }, 0)
-  .to(".logoWrap #y", { x: -30, y: 150, rotate: -10, ease: "none", duration: 5 }, 0)
-  .to(".logoWrap #o", { x: 0, y: 400, rotate: -10, ease: "none", duration: 5 }, 0)
-  .to(".logoWrap #u", { x: 50, y: 300, rotate: 10, ease: "none", duration: 5 }, 0)
-  .to(".logoWrap #n", { x: 100, y: 100, rotate: -10, ease: "none", duration: 5 }, 0)
-  .to(".logoWrap #g", { x: 50, y: 450, rotate: 20, ease: "none", duration: 5 }, 0);
+  gsap
+    .timeline({
+      scrollTrigger: {
+        trigger: ".visual",
+        start: "100% 100%",
+        end: "100% 0%",
+        scrub: 1, //애니메이션이 스크롤에 따라 움직이도록 하는 속성, true 이면서 속도1 / 안적으면 스크롤 없이 바로 진행 된다.
+        markers:1,
+      },
+    })
+    .to(".logoWrap #j", { x: -150, y: 250, rotate: 20, ease: "none", duration: 5 }, 0)
+    .to(".logoWrap #y", { x: -30, y: 150, rotate: -10, ease: "none", duration: 5 }, 0)
+    .to(".logoWrap #o", { x: 0, y: 400, rotate: -10, ease: "none", duration: 5 }, 0)
+    .to(".logoWrap #u", { x: 50, y: 300, rotate: 10, ease: "none", duration: 5 }, 0)
+    .to(".logoWrap #n", { x: 100, y: 100, rotate: -10, ease: "none", duration: 5 }, 0)
+    .to(".logoWrap #g", { x: 50, y: 450, rotate: 20, ease: "none", duration: 5 }, 0);
 
 
-  // 공통 (텍스트 박스) 에 애니메이션 적용 front 애니메이션 사용
-gsap.utils.toArray('.mainTextBox .title i').forEach((selector) => {
-  gsap.timeline({
-    scrollTrigger: {
-      trigger: selector,
-      start: '100% 100%',
-      end: '100% 100%',
-      scrub: 1,
-      markers: true,
-    },
+  // 공통 (mainText) 에 애니메이션 적용 front 애니메이션 사용
+  gsap.utils.toArray('.mainTextBox .title i').forEach((selector) => {
+    gsap.timeline({
+      scrollTrigger: {
+        trigger: selector,
+        start: '100% 100%',
+        end: '100% 100%',
+        scrub: 1,
+        markers: true,
+      },
+    })
+  .fromTo(selector, { overflow: 'hidden', y: 150 }, { y: 0, ease: 'none', duration: 5 }, 0);
+  });
+
+  // 공통 subText
+  gsap.utils.toArray('.subText p').forEach((selector) => {
+    gsap.timeline({
+      scrollTrigger: {
+        trigger:selector,
+        start:"100% 100%",
+        end: "100% 100%",
+        scrub:1,
+        markers:true
+      },
+    })
+    .fromTo(selector, { opacity:0, y: 100 }, { opacity:1, y: 0, ease: 'none', duration: 5 }, 0);
   })
- .fromTo(selector, { overflow: 'hidden', y: 150 }, { y: 0, ease: 'none', duration: 5 }, 0);
-});
+
+  let textAniList = document.querySelectorAll('.con1 .textAni li');
+  let textAni = gsap.timeline({ repeat: -1 });
+
+  for (let i = 0; i < textAniList.length; i++) {
+    textAni.to(textAniList[i], {
+      duration: 0.8,
+      opacity: 1,
+      repeat: 1,
+      yoyo: true,
+      ease: 'power4.out',
+    });
+  }
+
+  // 애니메이션 실행
+  textAni.play();
+
+
+  // listBox 스크롤 트리거 애니메이션 z 축 이동
+  gsap.utils.toArray('.con4 .listBox .box').forEach((selector) => {
+    gsap.timeline({
+      scrollTrigger: {
+        trigger:selector,
+        start:"0% 20%",
+        end: "0% 0%",      
+        scrub:1,
+        markers:true 
+      }             
+    })
+    .to(selector, {transform:'rotateX(-10deg) scale(0.9)', transformOrigin:'top', filter:'brightness(0.3)'},0)
+  })
 
 };
+
