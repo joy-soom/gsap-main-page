@@ -89,5 +89,29 @@ window.onload = function () {
     .to(selector, {transform:'rotateX(-10deg) scale(0.9)', transformOrigin:'top', filter:'brightness(0.3)'},0)
   })
 
+
+  // 카드 애니메이션
+  gsap.utils.toArray('.con3 .listBox li').forEach((selector, t) => {
+    ScrollTrigger.create({
+      trigger:selector,
+      start:'30% 50%',
+      //onEnter란 scrollTrigger가 제공하는 콜백 함수 ( 종류 많음 onEnter은 스크롤 내릴때만 반응하고 올릴때는 액션 없는 콜백 함수 )
+      onEnter: () => {
+        //gsap.set => 진행 되는 시간 없이 바로 set 되는 함수
+        gsap.set(selector, {
+            rotationX:'-65deg',
+            z:'-500px',
+            opacity:0,
+        }),
+        gsap.to(selector, {
+           rotationX:0,
+            z:0,
+            opacity:1,   
+            delay:(t % 3) * .05         
+        });
+      },
+      markers:true
+    });
+  });
 };
 
